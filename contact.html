@@ -55,7 +55,7 @@
           <div data-fs-success class="fs-success" style="display:none; margin-bottom:1rem;">Thanks — your message was sent.</div>
           <div data-fs-error class="fs-error" style="display:none; margin-bottom:1rem;">An error occurred. Please try again.</div>
 
-          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xlgqzeln" method="POST">
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xlgqzeln" method="POST" onsubmit="event.preventDefault();">
             <input type="hidden" name="_subject" value="New contact from ManaOS site" />
             <label class="hp-field" aria-hidden="true">Leave this field empty
               <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
