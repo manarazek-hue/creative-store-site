@@ -28,6 +28,100 @@ if ('IntersectionObserver' in window) {
 
   sectionsToReveal.forEach((section) => revealObserver.observe(section));
 
+
+// Custom contact form handler with optional reCAPTCHA support
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const submitBtn = form.querySelector('[data-fs-submit-btn]') || form.querySelector('button[type=submit]');
+  const successBox = document.querySelector('[data-fs-success]');
+  const errorBox = document.querySelector('[data-fs-error]');
+
+  function show(el) { if (el) el.style.display = ''; }
+  function hide(el) { if (el) el.style.display = 'none'; }
+  function setLoading(on) {
+    if (!submitBtn) return;
+    submitBtn.disabled = on;
+    submitBtn.classList.toggle('is-loading', !!on);
+  }
+
+  hide(successBox); hide(errorBox);
+
+  // Optional reCAPTCHA v3: add data-recaptcha-sitekey="SITE_KEY" to the form element
+  const recaptchaKey = form.dataset.recaptchaSitekey || null;
+  let recaptchaReady = false;
+
+  async function ensureRecaptcha() {
+    if (!recaptchaKey) return false;
+    if (window.grecaptcha && window.grecaptcha.execute) { recaptchaReady = true; return true; }
+    // load script
+    return new Promise((resolve) => {
+      const s = document.createElement('script');
+      s.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaKey}`;
+      s.onload = () => { recaptchaReady = true; resolve(true); };
+      s.onerror = () => resolve(false);
+      document.head.appendChild(s);
+    });
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hide(successBox); hide(errorBox);
+
+    // basic browser validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const url = form.action;
+      const formData = new FormData(form);
+
+      // run reCAPTCHA if configured
+      if (recaptchaKey) {
+        const ok = await ensureRecaptcha();
+        if (ok && window.grecaptcha && window.grecaptcha.execute) {
+          const token = await window.grecaptcha.execute(recaptchaKey, { action: 'submit' });
+          formData.append('g-recaptcha-response', token);
+        }
+      }
+
+      const res = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        show(successBox);
+        hide(errorBox);
+        form.reset();
+        // quick cooldown then re-enable
+        setTimeout(() => setLoading(false), 800);
+      } else {
+        let data = {};
+        try { data = await res.json(); } catch (_) {}
+        // populate field errors if present
+        if (data && data.errors && Array.isArray(data.errors)) {
+          data.errors.forEach(err => {
+            const el = form.querySelector(`[data-fs-error="${err.field}"]`);
+            if (el) el.textContent = err.message;
+          });
+        }
+        show(errorBox);
+        setLoading(false);
+      }
+    } catch (err) {
+      console.error('Form submit error', err);
+      show(errorBox);
+      setLoading(false);
+    }
+  });
+})();
   if (statsSection) {
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
