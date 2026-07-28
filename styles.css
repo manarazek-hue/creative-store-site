@@ -1,5 +1,8 @@
 :root {
-  --bg: #04070f;
+  --bg: radial-gradient(circle at top 10% left -10%, rgba(74, 120, 255, 0.14), transparent 20%),
+    radial-gradient(circle at 88% 10%, rgba(107, 167, 255, 0.1), transparent 16%),
+    radial-gradient(circle at 56% 82%, rgba(109, 92, 255, 0.08), transparent 18%),
+    linear-gradient(180deg, #04070f 0%, #070c17 45%, #05070f 100%);
   --surface: rgba(14, 21, 36, 0.92);
   --surface-soft: rgba(22, 31, 53, 0.92);
   --text: #f8fbff;
@@ -37,10 +40,7 @@ body {
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at top 10% left -10%, rgba(74, 120, 255, 0.14), transparent 20%),
-    radial-gradient(circle at 88% 10%, rgba(107, 167, 255, 0.1), transparent 16%),
-    radial-gradient(circle at 56% 82%, rgba(109, 92, 255, 0.08), transparent 18%),
-    linear-gradient(180deg, #04070f 0%, #070c17 45%, #05070f 100%);
+  background: var(--bg);
   line-height: 1.75;
 }
 
@@ -81,18 +81,12 @@ textarea {
 }
 
 .theme-toggle {
-  background: transparent;
-  border: 1px solid var(--surface-contrast);
-  color: var(--text);
-  padding: .45rem .6rem;
-  border-radius: 10px;
-  cursor: pointer;
+  display: none;
 }
 
 /* Typewriter caret */
 [data-typewriter] {
-  white-space: nowrap;
-  overflow: hidden;
+  /* allow wrapped heading text instead of hiding overflow */
 }
 .hero .typed-caret {
   display: inline-block;
@@ -283,6 +277,21 @@ h3 {
   padding: 2rem;
 }
 
+.hero-panel .panel-card {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  text-align: center;
+}
+.hero-panel .panel-list {
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+.hero-panel .panel-list li {
+  width: auto;
+}
+
 .panel-list {
   list-style: none;
   padding: 0;
@@ -448,11 +457,15 @@ h3 {
 }
 
 .footer-grid {
-  grid-template-columns: 1.1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  align-items: start;
+  align-items: center;
   padding: 2rem 0 2.5rem;
   color: #8e9cb2;
+}
+
+.footer-meta p {
+  margin: 0;
 }
 
 .footer-brand {
@@ -505,6 +518,77 @@ h3 {
 .filter-btn.active { background: var(--accent); color: #fff; }
 .project-card { transition: transform .28s ease, opacity .28s ease; }
 .project-card.hidden { transform: translateY(10px) scale(.98); opacity: 0; pointer-events: none; }
+
+.project-carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.5rem 0 1rem;
+}
+.carousel-track-wrap {
+  overflow: hidden;
+  border-radius: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-height: 360px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.35s ease;
+  min-height: 260px;
+}
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  border-radius: 1.2rem;
+  object-fit: cover;
+  display: block;
+}
+.carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.carousel-dots button {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.carousel-dots button.active {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+.carousel-nav {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 
 /* Project modal tweaks */
 .project-modal { max-width: 720px; padding: 1.5rem; }
@@ -678,6 +762,7 @@ h3 {
   display: flex;
 }
 .modal {
+  position: relative;
   background: linear-gradient(180deg,#0b1220,#071024);
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
@@ -688,6 +773,12 @@ h3 {
 }
 .modal-content h3 {
   margin: 0 0 0.5rem;
+}
+.carousel-placeholder {
+  color: #d8e4ff;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 2.5rem 1rem;
 }
 .modal-content p {
   color: #c7d5ea;

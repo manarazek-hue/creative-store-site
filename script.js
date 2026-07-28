@@ -178,22 +178,12 @@ if ('IntersectionObserver' in window) {
   }
 }
 
-  /* Additional interactive features: theme toggle, typewriter, filters, sticky nav, active link, project modal */
+  /* Additional interactive features: typewriter, filters, sticky nav, active link, project modal */
   (function () {
-    // Theme toggle
     const themeBtn = document.getElementById('theme-toggle');
-    const bodyEl = document.body;
-    function applyTheme(t) {
-      if (t === 'light') bodyEl.classList.add('light'); else bodyEl.classList.remove('light');
-      if (themeBtn) themeBtn.textContent = bodyEl.classList.contains('light') ? '☀️' : '🌙';
+    if (themeBtn) {
+      themeBtn.style.display = 'none';
     }
-    const saved = localStorage.getItem('manaos_theme');
-    applyTheme(saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
-    if (themeBtn) themeBtn.addEventListener('click', () => {
-      const now = bodyEl.classList.toggle('light') ? 'light' : 'dark';
-      localStorage.setItem('manaos_theme', now);
-      applyTheme(now);
-    });
 
     // Sticky header background tweak
     const header = document.querySelector('.site-header');
@@ -252,16 +242,74 @@ if ('IntersectionObserver' in window) {
       });
     }));
 
-    // Project modal
+    // Project modal carousel
     const projectModal = document.getElementById('project-modal');
     const modalTitle = projectModal && projectModal.querySelector('#project-modal-title');
     const modalDesc = projectModal && projectModal.querySelector('#project-modal-desc');
-    projectCards.forEach(card => card.addEventListener('click', () => {
+    const carouselTrack = projectModal && projectModal.querySelector('.carousel-track');
+    const carouselDots = projectModal && projectModal.querySelector('.carousel-dots');
+    const prevBtn = projectModal && projectModal.querySelector('.carousel-nav.prev');
+    const nextBtn = projectModal && projectModal.querySelector('.carousel-nav.next');
+    let currentSlide = 0;
+    let slideCount = 0;
+
+    function setSlide(index) {
+      if (!carouselTrack || !carouselDots) return;
+      currentSlide = Math.max(0, Math.min(index, slideCount - 1));
+      const offset = -currentSlide * 100;
+      carouselTrack.style.transform = `translateX(${offset}%)`;
+      carouselDots.querySelectorAll('button').forEach((btn, idx) => btn.classList.toggle('active', idx === currentSlide));
+      updateCarouselControls();
+    }
+
+    function buildCarousel(images) {
+      if (!carouselTrack || !carouselDots) return;
+      carouselTrack.innerHTML = '';
+      carouselDots.innerHTML = '';
+      const imgList = images.filter(Boolean);
+      if (imgList.length === 0) {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'carousel-slide';
+        placeholder.innerHTML = '<div class="carousel-placeholder">Images coming soon for this project.</div>';
+        carouselTrack.appendChild(placeholder);
+        imgList.push('');
+      }
+      slideCount = imgList.length;
+      imgList.forEach((src, idx) => {
+        if (idx === 0 && carouselTrack.children.length) {
+          // placeholder already inserted
+        } else {
+          const slide = document.createElement('div');
+          slide.className = 'carousel-slide';
+          slide.innerHTML = `<img src="${src}" alt="Project screenshot ${idx + 1}" />`;
+          carouselTrack.appendChild(slide);
+        }
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = idx === 0 ? 'active' : '';
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => setSlide(idx));
+        carouselDots.appendChild(dot);
+      });
+      setSlide(0);
+    }
+
+    function updateCarouselControls() {
+      if (!prevBtn || !nextBtn) return;
+      prevBtn.disabled = currentSlide <= 0;
+      nextBtn.disabled = currentSlide >= slideCount - 1;
+    }
+
+    function openModal(card) {
       if (!projectModal) return;
       const title = card.querySelector('h3') && card.querySelector('h3').textContent;
       const desc = card.querySelector('p') && card.querySelector('p').textContent;
       if (modalTitle) modalTitle.textContent = title || 'Project';
       if (modalDesc) modalDesc.textContent = desc || '';
+      const imagesMeta = card.dataset.images || '';
+      const images = imagesMeta.split('|').map(src => src.trim()).filter(Boolean);
+      buildCarousel(images);
+      updateCarouselControls();
       projectModal.classList.add('open'); projectModal.setAttribute('aria-hidden', 'false');
       const close = () => { projectModal.classList.remove('open'); projectModal.setAttribute('aria-hidden', 'true'); };
       const closeBtn = projectModal.querySelector('.modal-close');
@@ -270,9 +318,13 @@ if ('IntersectionObserver' in window) {
       if (okBtn) okBtn.onclick = close;
       projectModal.onclick = (ev) => { if (ev.target === projectModal) close(); };
       document.addEventListener('keydown', function esc(e){ if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
-      // focus management
       setTimeout(() => { (projectModal.querySelector('.modal-close') || projectModal).focus(); }, 60);
-    }));
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { if (currentSlide > 0) { setSlide(currentSlide - 1); updateCarouselControls(); } });
+    if (nextBtn) nextBtn.addEventListener('click', () => { if (currentSlide < slideCount - 1) { setSlide(currentSlide + 1); updateCarouselControls(); } });
+
+    projectCards.forEach(card => card.addEventListener('click', () => openModal(card)));
 
     // Smooth scroll for same-page nav (ensure offset for sticky header)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
