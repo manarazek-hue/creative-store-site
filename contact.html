@@ -52,20 +52,21 @@
               <p>Social: <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a> • <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a> • <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a></p>
             </div>
           </div>
-          <form class="contact-form">
+          <form class="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+            <input type="hidden" name="_subject" value="New contact from ManaOS site" />
             <label>
               Name
-              <input type="text" placeholder="Your name" />
+              <input name="name" type="text" placeholder="Your name" required />
             </label>
             <label>
               Email
-              <input type="email" placeholder="you@example.com" />
+              <input name="email" type="email" placeholder="you@example.com" required />
             </label>
             <label>
               Message
-              <textarea rows="5" placeholder="Tell me about your project, goal, or workflow..."></textarea>
+              <textarea name="message" rows="5" placeholder="Tell me about your project, goal, or workflow..." required></textarea>
             </label>
-            <button class="btn btn-primary" type="button">Send message</button>
+            <button class="btn btn-primary" type="submit">Send message</button>
           </form>
         </div>
       </section>
