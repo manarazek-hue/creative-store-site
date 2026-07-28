@@ -65,8 +65,9 @@ if ('IntersectionObserver' in window) {
     });
   }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // submission logic used by click and submit handlers
+  async function handleSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
     hide(successBox); hide(errorBox);
 
     // basic browser validation
@@ -142,7 +143,11 @@ if ('IntersectionObserver' in window) {
       show(errorBox);
       setLoading(false);
     }
-  });
+  }
+
+  // prefer click on the button (prevents native navigation); also keep submit handler for completeness
+  if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
+  form.addEventListener('submit', handleSubmit);
 })();
   if (statsSection) {
     const statsObserver = new IntersectionObserver((entries) => {
