@@ -479,6 +479,40 @@ h3 {
   color: #f4faff;
 }
 
+/* Formspree UX: success / error messages and field errors */
+.fs-success {
+  background: linear-gradient(90deg,#e6ffea,#d8fff0);
+  color: #064e3b;
+  border: 1px solid rgba(6,78,59,0.08);
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+  margin-bottom: 1rem;
+}
+.fs-error {
+  background: linear-gradient(90deg,#ffecec,#ffd6d6);
+  color: #6b0217;
+  border: 1px solid rgba(107,2,23,0.08);
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+  margin-bottom: 1rem;
+}
+.field-error {
+  display: block;
+  color: #ffb4b4;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+  margin-top: 0.35rem;
+}
+/* Honeypot (offscreen) */
+.hp-field {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
 .section-fade {
   opacity: 0;
   transform: translateY(24px);
