@@ -117,12 +117,14 @@ textarea {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
   color: var(--muted);
   font-weight: 600;
   transition: color 0.24s ease;
+  white-space: nowrap;
 }
 
 .nav-links a.active,
@@ -181,12 +183,20 @@ textarea {
 }
 
 .hero-grid {
-  grid-template-columns: 1.4fr 0.9fr;
+  grid-template-columns: 1.55fr 1fr;
   align-items: center;
+  gap: 2rem;
 }
 
 .hero-copy {
   max-width: 42rem;
+}
+
+.hero-panel {
+  padding: 2rem;
+  min-width: 360px;
+  width: 100%;
+  max-width: 480px;
 }
 
 .eyebrow {
