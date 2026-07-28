@@ -597,3 +597,47 @@ h3 {
     flex-direction: column;
   }
 }
+
+/* Modal for success message */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal {
+  background: linear-gradient(180deg,#0b1220,#071024);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 40px 120px rgba(2,6,23,0.7);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.modal-content h3 {
+  margin: 0 0 0.5rem;
+}
+.modal-content p {
+  color: #c7d5ea;
+  margin-bottom: 1rem;
+}
+.modal-close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  background: transparent;
+  border: 0;
+  color: #dfeaff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+.modal-ok {
+  margin-top: 0.5rem;
+}

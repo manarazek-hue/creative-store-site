@@ -97,8 +97,22 @@ if ('IntersectionObserver' in window) {
       });
 
       if (res.ok) {
-        show(successBox);
         hide(errorBox);
+        // show modal instead of inline box
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
+          // wire modal buttons
+          const closeBtn = modal.querySelector('.modal-close');
+          const okBtn = modal.querySelector('.modal-ok');
+          const closeModal = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); };
+          if (closeBtn) closeBtn.onclick = closeModal;
+          if (okBtn) okBtn.onclick = closeModal;
+          modal.onclick = (ev) => { if (ev.target === modal) closeModal(); };
+        } else {
+          show(successBox);
+        }
         form.reset();
         // quick cooldown then re-enable
         setTimeout(() => setLoading(false), 800);
