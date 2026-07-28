@@ -30,9 +30,12 @@
           <a href="#process">Process</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light">🌙</button>
+          <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
-        </button>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -41,7 +44,7 @@
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Autonomous AI Systems • Business Automation • Intelligent Agents</p>
-            <h1>Building Autonomous AI Systems That Think, Create, and Scale Businesses.</h1>
+            <h1 data-typewriter="Building Autonomous AI Systems That Think, Create, and Scale Businesses.">Building Autonomous AI Systems That Think, Create, and Scale Businesses.</h1>
             <p class="hero-text">
               I'm Mohamed, founder of ManaOS. I design autonomous AI systems that automate operations, generate content, orchestrate intelligent agents, and help businesses scale through advanced automation and custom AI solutions.
             </p>
@@ -117,22 +120,29 @@
             <h2>Premium AI initiatives that demonstrate what ManaOS builds.</h2>
           </div>
           <div class="project-grid">
-            <article class="project-card">
+            <div class="project-filters" aria-label="Project filters">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="agents">Agents</button>
+              <button class="filter-btn" data-filter="content">Content</button>
+              <button class="filter-btn" data-filter="crm">CRM</button>
+            </div>
+
+            <article class="project-card" data-tags="agents">
               <div class="project-icon">M</div>
               <h3>ManaOS</h3>
               <p>An autonomous AI company powered by specialized intelligent agents.</p>
             </article>
-            <article class="project-card">
+            <article class="project-card" data-tags="content">
               <div class="project-icon">Y</div>
               <h3>AI YouTube Studio</h3>
               <p>A complete AI workflow for creating cinematic educational content.</p>
             </article>
-            <article class="project-card">
+            <article class="project-card" data-tags="crm">
               <div class="project-icon">C</div>
               <h3>Autonomous CRM</h3>
               <p>AI-powered customer management and sales automation.</p>
             </article>
-            <article class="project-card">
+            <article class="project-card" data-tags="content">
               <div class="project-icon">P</div>
               <h3>Creative AI Pipeline</h3>
               <p>An end-to-end system for generating professional media using AI.</p>
@@ -140,6 +150,18 @@
           </div>
         </div>
       </section>
+
+  <!-- Project detail modal -->
+  <div id="project-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="modal-body">
+        <h3 id="project-modal-title">Project Title</h3>
+        <p id="project-modal-desc">Project description goes here.</p>
+        <div class="modal-actions"><button class="btn modal-ok">Close</button></div>
+      </div>
+    </div>
+  </div>
 
       <section id="stack" class="section section-fade">
         <div class="container">

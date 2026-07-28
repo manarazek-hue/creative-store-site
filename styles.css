@@ -8,6 +8,20 @@
   --accent: #7cc1ff;
   --accent-strong: #79a8ff;
   --shadow: 0 30px 90px rgba(0, 0, 0, 0.24);
+  --surface-contrast: rgba(255,255,255,0.03);
+}
+
+/* Light theme variables */
+body.light {
+  --bg: #f7f9fc;
+  --surface: #ffffff;
+  --surface-soft: #f4f7fb;
+  --text: #071021;
+  --muted: #556078;
+  --border: rgba(6, 16, 34, 0.06);
+  --accent: #3b82f6;
+  --accent-strong: #1e40af;
+  --shadow: 0 18px 40px rgba(10, 20, 40, 0.06);
 }
 
 * {
@@ -59,6 +73,36 @@ textarea {
   background: rgba(4, 7, 15, 0.86);
   border-bottom: 1px solid var(--border);
 }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--surface-contrast);
+  color: var(--text);
+  padding: .45rem .6rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Typewriter caret */
+[data-typewriter] {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.hero .typed-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: var(--accent);
+  margin-left: 6px;
+  animation: blink 1s steps(2,start) infinite;
+}
+@keyframes blink { to { visibility: hidden; } }
 
 .nav-bar {
   display: flex;
@@ -443,6 +487,27 @@ h3 {
   font-size: 1.05rem;
   line-height: 1.9;
 }
+
+/* Project filters and animations */
+.project-filters {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+.filter-btn {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.03);
+  color: var(--text);
+  padding: .35rem .6rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.filter-btn.active { background: var(--accent); color: #fff; }
+.project-card { transition: transform .28s ease, opacity .28s ease; }
+.project-card.hidden { transform: translateY(10px) scale(.98); opacity: 0; pointer-events: none; }
+
+/* Project modal tweaks */
+.project-modal { max-width: 720px; padding: 1.5rem; }
 
 .contact-grid {
   grid-template-columns: 1fr 1fr;
