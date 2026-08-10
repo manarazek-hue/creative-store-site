@@ -1,0 +1,90 @@
+{
+  "portfolioVersion": "1.1",
+  "lastReviewed": "2026-08-10",
+
+  "publicationPolicy": {
+    "publicStatuses": [
+      "Built / Working",
+      "Active Development",
+      "Prototype",
+      "Concept / R&D"
+    ],
+    "privateInformationExcluded": true,
+    "unverifiedTechnologyClaimsExcluded": true
+  },
+
+  "flagship": {
+    "id": "manaos",
+    "name": "ManaOS",
+    "type": "Autonomous AI Company OS",
+    "status": "Active Development",
+    "description": "An event-driven operating architecture designed to discover opportunities, evaluate them, coordinate specialized agents, build digital services, manage delivery, and continuously learn.",
+    "publicArchitecture": [
+      "Scout",
+      "Evaluator",
+      "CEO",
+      "Sales",
+      "Human Approval",
+      "Builder",
+      "QA",
+      "Delivery",
+      "Finance",
+      "Learning"
+    ]
+  },
+
+  "ecosystem": [
+    {
+      "id": "youtube",
+      "name": "YouTube Intelligence System",
+      "status": "Built / Working",
+      "category": "Intelligence",
+      "description": "A YouTube intelligence system that collects channel and video data, analyzes performance, identifies patterns, and turns the findings into actionable content strategy.",
+      "architecture": "YouTube Data API → Channel Data → Video Intelligence → Performance Analysis → Pattern Detection → Action Plan → Content Strategy",
+      "technologies": [
+        "Python",
+        "YouTube Data API",
+        "YouTube Analytics API"
+      ]
+    },
+    {
+      "id": "fiverragent",
+      "name": "FiverrAgent",
+      "status": "Active Development",
+      "category": "Autonomous Business Agent",
+      "description": "An autonomous business agent designed to support a Fiverr-based digital service operation through opportunity discovery, evaluation, business workflow coordination, and delivery.",
+      "architecture": "Opportunity Discovery → Evaluation → Autonomous Business Workflow → Service Delivery",
+      "technologies": [
+        "Python",
+        "PostgreSQL",
+        "Ollama",
+        "ManaOS"
+      ]
+    }
+  ],
+
+  "independentProjects": [
+    {
+      "id": "mybi",
+      "name": "Business Intelligence System",
+      "status": "Active Development",
+      "category": "Business Intelligence",
+      "description": "An independent business-intelligence system focused on transforming business data into structured intelligence that can support analysis and decision-making.",
+      "architecture": "Business Data → Analysis → Intelligence → Decision Support",
+      "technologies": [
+        "AI / Automation"
+      ]
+    },
+    {
+      "id": "leadgen",
+      "name": "Lead Generation Bot",
+      "status": "Prototype",
+      "category": "Automation",
+      "description": "A lead-generation automation system designed to identify, process, and organize potential business opportunities through an automated lead workflow.",
+      "architecture": "Lead Discovery → Lead Processing → Qualification → Lead Generation Workflow",
+      "technologies": [
+        "AI / Automation"
+      ]
+    }
+  ]
+}

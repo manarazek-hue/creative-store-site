@@ -1,6 +1,83 @@
 (function () {
   "use strict";
 
+/* =========================================
+Project Data Source
+Single source of truth: data/projects.json
+========================================= */
+
+window.ManaOSPortfolioProjects = {};
+
+fetch("./data/projects.json", { cache: "no-store" })
+  .then(function (response) {
+    if (!response.ok) {
+      throw new Error(
+        "Unable to load data/projects.json: HTTP " + response.status
+      );
+    }
+
+    return response.json();
+  })
+  .then(function (data) {
+    var projects = {};
+
+    if (data && data.flagship) {
+      projects[data.flagship.id] = {
+        id: data.flagship.id,
+        title: data.flagship.name,
+        status: data.flagship.status,
+        category: data.flagship.type,
+        description: data.flagship.description,
+        architecture: Array.isArray(data.flagship.publicArchitecture)
+          ? data.flagship.publicArchitecture.join(" → ")
+          : "",
+        technologies: []
+      };
+    }
+
+    if (data && Array.isArray(data.ecosystem)) {
+      data.ecosystem.forEach(function (project) {
+        projects[project.id] = {
+          id: project.id,
+          title: project.name,
+          status: project.status,
+          category: project.category,
+          description: project.description || "",
+          architecture: project.architecture || "",
+          technologies: Array.isArray(project.technologies)
+            ? project.technologies
+            : []
+        };
+      });
+    }
+
+    if (data && Array.isArray(data.independentProjects)) {
+      data.independentProjects.forEach(function (project) {
+        projects[project.id] = {
+          id: project.id,
+          title: project.name,
+          status: project.status,
+          category: project.category,
+          description: project.description || "",
+          architecture: project.architecture || "",
+          technologies: Array.isArray(project.technologies)
+            ? project.technologies
+            : []
+        };
+      });
+    }
+
+    window.ManaOSPortfolioProjects = projects;
+
+    console.log(
+      "ManaOS portfolio project data loaded:",
+      Object.keys(projects)
+    );
+  })
+  .catch(function (error) {
+    console.error("ManaOS portfolio project data failed to load:", error);
+  });
+
   /* =========================================
      Global helpers
      ========================================= */
@@ -979,5 +1056,218 @@
       );
     }
   }
+
+})();
+/* =========================================================
+   3.3B PROJECT DETAIL CONTROLLER
+   ========================================================= */
+
+(function () {
+
+  "use strict";
+
+/* =========================================
+Project Data Source
+Single source of truth: data/projects.json
+========================================= */
+
+window.ManaOSPortfolioProjects = {};
+
+fetch("./data/projects.json", { cache: "no-store" })
+  .then(function (response) {
+    if (!response.ok) {
+      throw new Error(
+        "Unable to load data/projects.json: HTTP " + response.status
+      );
+    }
+
+    return response.json();
+  })
+  .then(function (data) {
+    var projects = {};
+
+    if (data && data.flagship) {
+      projects[data.flagship.id] = {
+        id: data.flagship.id,
+        title: data.flagship.name,
+        status: data.flagship.status,
+        category: data.flagship.type,
+        description: data.flagship.description,
+        architecture: Array.isArray(data.flagship.publicArchitecture)
+          ? data.flagship.publicArchitecture.join(" → ")
+          : "",
+        technologies: []
+      };
+    }
+
+    if (data && Array.isArray(data.ecosystem)) {
+      data.ecosystem.forEach(function (project) {
+        projects[project.id] = {
+          id: project.id,
+          title: project.name,
+          status: project.status,
+          category: project.category,
+          description: project.description || "",
+          architecture: project.architecture || "",
+          technologies: Array.isArray(project.technologies)
+            ? project.technologies
+            : []
+        };
+      });
+    }
+
+    if (data && Array.isArray(data.independentProjects)) {
+      data.independentProjects.forEach(function (project) {
+        projects[project.id] = {
+          id: project.id,
+          title: project.name,
+          status: project.status,
+          category: project.category,
+          description: project.description || "",
+          architecture: project.architecture || "",
+          technologies: Array.isArray(project.technologies)
+            ? project.technologies
+            : []
+        };
+      });
+    }
+
+    window.ManaOSPortfolioProjects = projects;
+
+    console.log(
+      "ManaOS portfolio project data loaded:",
+      Object.keys(projects)
+    );
+  })
+  .catch(function (error) {
+    console.error("ManaOS portfolio project data failed to load:", error);
+  });
+
+  const modal = document.getElementById(
+    "portfolio-project-modal"
+  );
+
+  if (!modal) {
+    return;
+  }
+
+  const title = document.getElementById(
+    "portfolio-project-title"
+  );
+
+  const status = document.getElementById(
+    "portfolio-project-status"
+  );
+
+  const category = document.getElementById(
+    "portfolio-project-category"
+  );
+
+  const description = document.getElementById(
+    "portfolio-project-description"
+  );
+
+  const architecture = document.getElementById(
+    "portfolio-project-architecture"
+  );
+
+  const technologies = document.getElementById(
+    "portfolio-project-technologies"
+  );
+
+  const closeButtons = modal.querySelectorAll(
+    ".portfolio-modal-close"
+  );
+
+  function openProject(id) {
+
+    const project =
+      window.ManaOSPortfolioProjects &&
+      window.ManaOSPortfolioProjects[id];
+
+    if (!project) {
+      return;
+    }
+
+    title.textContent = project.title;
+    status.textContent = project.status;
+    category.textContent = project.category;
+    description.textContent = project.description;
+    architecture.textContent = project.architecture;
+
+    technologies.innerHTML = "";
+
+    project.technologies.forEach(function (technology) {
+
+      const tag = document.createElement("span");
+
+      tag.textContent = technology;
+
+      technologies.appendChild(tag);
+
+    });
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+
+  }
+
+  function closeProject() {
+
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+
+  }
+
+  document
+    .querySelectorAll("[data-project]")
+    .forEach(function (card) {
+
+      card.addEventListener("click", function () {
+
+        const projectId =
+          card.getAttribute("data-project");
+
+        openProject(projectId);
+
+      });
+
+    });
+
+  closeButtons.forEach(function (button) {
+
+    button.addEventListener(
+      "click",
+      closeProject
+    );
+
+  });
+
+  modal.addEventListener(
+    "click",
+    function (event) {
+
+      if (event.target === modal) {
+        closeProject();
+      }
+
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape" &&
+        modal.classList.contains("open")
+      ) {
+
+        closeProject();
+
+      }
+
+    }
+  );
 
 })();

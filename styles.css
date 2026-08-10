@@ -807,3 +807,325 @@ h3 {
 .modal-ok {
   margin-top: 0.5rem;
 }
+
+/* =========================================================
+   3.3B PORTFOLIO REBUILD
+   ManaOS flagship additions
+   ========================================================= */
+
+.flagship-hero {
+  min-height: 82vh;
+}
+
+.flagship-panel {
+  transform: scale(1.03);
+}
+
+.flagship-panel .panel-card {
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.flagship-panel h2 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  margin: .35rem 0;
+}
+
+.panel-flow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .65rem;
+  margin-top: 1.5rem;
+}
+
+.panel-flow span {
+  padding: .75rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  background: rgba(255,255,255,.035);
+  font-size: .85rem;
+}
+
+.section-lead {
+  max-width: 780px;
+  margin-top: 1rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  opacity: .82;
+}
+
+.manaos-flagship {
+  position: relative;
+}
+
+.manaos-command-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.manaos-command-card {
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  background: rgba(255,255,255,.025);
+}
+
+.manaos-command-card.primary {
+  min-height: 280px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(110,80,255,.14),
+      rgba(255,255,255,.025)
+    );
+  border-color: rgba(130,100,255,.3);
+}
+
+.card-label {
+  display: block;
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-bottom: .8rem;
+}
+
+.manaos-command-card h3 {
+  font-size: 1.45rem;
+  margin-bottom: .8rem;
+}
+
+.manaos-command-card p {
+  line-height: 1.75;
+  opacity: .78;
+}
+
+.architecture-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  margin-top: 3rem;
+}
+
+.architecture-node {
+  min-width: 145px;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 15px;
+  background: rgba(255,255,255,.025);
+}
+
+.architecture-node span {
+  display: block;
+  font-size: .65rem;
+  opacity: .45;
+  margin-bottom: .4rem;
+}
+
+.architecture-node strong {
+  display: block;
+  font-size: .95rem;
+}
+
+.architecture-node small {
+  display: block;
+  margin-top: .35rem;
+  opacity: .55;
+  line-height: 1.35;
+}
+
+.architecture-node.human-node {
+  border-color: rgba(255,190,80,.35);
+  background: rgba(255,190,80,.06);
+}
+
+.architecture-arrow {
+  opacity: .35;
+  font-size: 1.4rem;
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.ecosystem-card {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.7rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  background: rgba(255,255,255,.025);
+}
+
+.ecosystem-featured {
+  border-color: rgba(130,100,255,.32);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(100,80,255,.11),
+      rgba(255,255,255,.025)
+    );
+}
+
+.ecosystem-card h3 {
+  margin: .6rem 0;
+}
+
+.ecosystem-card p {
+  line-height: 1.7;
+  opacity: .75;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.status-built {
+  background: rgba(80,180,120,.08);
+  color: #9ce4b3;
+}
+
+.status-active {
+  background: rgba(100,120,255,.1);
+  color: #aeb9ff;
+}
+
+.status-prototype {
+  background: rgba(255,190,80,.08);
+  color: #ffd58a;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: .7rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.real-project-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.project-card-large {
+  min-height: 260px;
+}
+
+.project-card-large .status-badge {
+  margin-bottom: .8rem;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1.25rem;
+}
+
+.project-meta span {
+  padding: .4rem .65rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.07);
+  font-size: .7rem;
+  opacity: .72;
+}
+
+@media (max-width: 1050px) {
+
+  .manaos-command-grid,
+  .ecosystem-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .manaos-command-card.primary,
+  .ecosystem-featured {
+    grid-column: 1 / -1;
+  }
+
+}
+
+@media (max-width: 760px) {
+
+  .manaos-command-grid,
+  .ecosystem-grid,
+  .real-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-flow {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .architecture-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  .architecture-node {
+    width: 100%;
+  }
+
+  .panel-flow {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================================
+   3.3B PROJECT DETAIL MODAL
+   ========================================================= */
+
+.portfolio-detail-modal {
+  width: min(760px, calc(100vw - 2rem));
+}
+
+.portfolio-detail-modal .modal-content {
+  padding: 2.4rem;
+}
+
+.portfolio-detail-modal h3 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  margin: .4rem 0 1rem;
+}
+
+.portfolio-detail-modal p {
+  line-height: 1.8;
+  opacity: .8;
+}
+
+.detail-block {
+  margin-top: 2rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.detail-block .project-meta {
+  margin-top: .8rem;
+}
+
+[data-project] {
+  cursor: pointer;
+}
+
+[data-project]:hover {
+  transform: translateY(-5px);
+}
+
