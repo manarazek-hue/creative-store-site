@@ -1,0 +1,11 @@
+﻿# Local backups and repair artifacts
+*.backup
+*.before-encoding-fix
+
+# Local action/debug logs
+action_logs.zip
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
