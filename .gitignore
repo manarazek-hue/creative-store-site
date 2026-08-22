@@ -13,3 +13,5 @@ Thumbs.db
 *.before-final-hub
 
 *.phase1-before-facts
+
+index.html.accidental-home-overwrite
