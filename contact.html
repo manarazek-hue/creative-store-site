@@ -1,114 +1,508 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact ManaOS</title>
-    <meta
-      name="description"
-      content="Contact ManaOS to discuss autonomous AI systems, automation, and business intelligence for scaling companies."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="background-layer"></div>
 
-    <header class="site-header">
-      <div class="container nav-bar">
-        <a class="brand" href="index.html">ManaOS</a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="contact.html" class="active">Contact</a>
-        </nav>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </header>
+<head>
 
-    <main class="page-shell">
-      <section class="hero-alt">
-        <div class="container page-hero">
-          <p class="eyebrow">Let’s build together</p>
-          <h1>Discuss AI systems, automation, and next-generation business growth.</h1>
-          <p class="hero-text">If you want to build autonomous workflows, intelligent agents, or content systems that scale, let's connect and map the best path forward.</p>
-        </div>
-      </section>
+  <meta charset="UTF-8">
 
-      <section class="section section-fade" id="contact">
-        <div class="container contact-grid">
-          <div>
-            <div class="contact-card">
-              <h2>Reach out</h2>
-              <p>Email: <a href="mailto:hello@manaos.com">hello@manaos.com</a></p>
-              <p>Location: Cairo, Egypt / Remote worldwide</p>
-              <p>Social: <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a> • <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a> • <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a></p>
-            </div>
-          </div>
-          <div data-fs-success class="fs-success" style="display:none; margin-bottom:1rem;">Thanks — your message was sent.</div>
-          <div data-fs-error class="fs-error" style="display:none; margin-bottom:1rem;">An error occurred. Please try again.</div>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xlgqzeln" method="POST" onsubmit="event.preventDefault();">
-            <input type="hidden" name="_subject" value="New contact from ManaOS site" />
-            <label class="hp-field" aria-hidden="true">Leave this field empty
-              <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
-            </label>
-            <label>
-              Name
-              <input name="name" type="text" placeholder="Your name" data-fs-field required />
-              <span data-fs-error="name" class="field-error"></span>
-            </label>
-            <label>
-              Email
-              <input name="email" type="email" placeholder="you@example.com" data-fs-field required />
-              <span data-fs-error="email" class="field-error"></span>
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="5" placeholder="Tell me about your project, goal, or workflow..." data-fs-field required></textarea>
-              <span data-fs-error="message" class="field-error"></span>
-            </label>
-            <button class="btn btn-primary" type="button" data-fs-submit-btn>Send message</button>
-          </form>
-        </div>
-      </section>
-    </main>
+  <meta
+    name="description"
+    content="Contact Mana about software, AI, automation, music, creative technology and collaborations."
+  >
 
-  <!-- Success modal shown after successful submission -->
-  <div id="success-modal" class="modal-overlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" aria-label="Close">×</button>
-      <div class="modal-content">
-        <h3 id="modal-title">Message sent</h3>
-        <p>Thanks — your message was sent. I will reply as soon as possible.</p>
-        <button class="btn modal-ok">OK</button>
-      </div>
+  <title>
+    Contact — Mana
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css?v=3.1.0"
+  >
+
+</head>
+
+
+<body>
+
+  <header class="site-header">
+
+    <div class="nav-shell">
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+        <span class="brand-mark">
+          M
+        </span>
+
+        <span>
+          MANA
+        </span>
+      </a>
+
+
+      <nav class="desktop-nav">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="index.html#projects">
+          Work
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <button
+        id="menuButton"
+        class="menu-button"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
     </div>
-  </div>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <a class="brand footer-brand" href="index.html">ManaOS™ 29296</a>
-          <p>Autonomous AI Company Builder</p>
-        </div>
-        <div>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
-          <a href="mailto:listen@manaos.com">listen@manaos.com</a>
-        </div>
-        <p>&copy; 2026</p>
+
+    <nav
+      id="mobileNav"
+      class="mobile-nav"
+      hidden
+    >
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="index.html#projects">
+        Work
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- INTRO -->
+
+    <section class="subpage-hero">
+
+      <div class="container">
+
+        <p class="eyebrow">
+          CONTACT
+        </p>
+
+        <h1>
+          Let's build
+          <span>something useful.</span>
+        </h1>
+
+        <p class="subpage-lead">
+          Have a project, collaboration, creative idea,
+          introduction or development opportunity?
+          Send me a message.
+        </p>
+
       </div>
-    </footer>
 
-    <script src="script.js"></script>
-  </body>
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="section">
+
+      <div class="container contact-page-grid">
+
+
+        <div class="contact-context">
+
+          <p class="eyebrow">
+            OPEN TO CONVERSATIONS
+          </p>
+
+          <h2>
+            What can we talk about?
+          </h2>
+
+
+          <div class="contact-topic-list">
+
+            <article>
+              <strong>
+                Software & Automation
+              </strong>
+
+              <p>
+                Digital products, workflows,
+                tools and business automation.
+              </p>
+            </article>
+
+
+            <article>
+              <strong>
+                AI Systems
+              </strong>
+
+              <p>
+                Agents, local AI, analytics,
+                intelligence and applied AI.
+              </p>
+            </article>
+
+
+            <article>
+              <strong>
+                Music & Creative Technology
+              </strong>
+
+              <p>
+                Music production, video,
+                creative workflows and digital content.
+              </p>
+            </article>
+
+
+            <article>
+              <strong>
+                Collaboration & Support
+              </strong>
+
+              <p>
+                Partnerships, introductions,
+                project support and development opportunities.
+              </p>
+            </article>
+
+          </div>
+
+
+          <div class="direct-contact">
+
+            <span>
+              EMAIL
+            </span>
+
+            <a href="mailto:djmana.eg@gmail.com">
+              djmana.eg@gmail.com
+            </a>
+
+            <span>
+              LOCATION
+            </span>
+
+            <strong>
+              Cairo, Egypt · Remote
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <div class="contact-form-panel">
+
+          <p class="panel-label">
+            SEND A MESSAGE
+          </p>
+
+
+          <form
+            id="contactForm"
+            action="https://formspree.io/f/xlgqzeln"
+            method="POST"
+          >
+
+            <input
+              type="hidden"
+              name="_subject"
+              value="New contact from MANA Creative Site"
+            >
+
+
+            <div
+              class="contact-honeypot"
+              aria-hidden="true"
+            >
+
+              <label>
+                Leave this field empty
+
+                <input
+                  type="text"
+                  name="_gotcha"
+                  tabindex="-1"
+                  autocomplete="off"
+                >
+              </label>
+
+            </div>
+
+
+            <div class="contact-field">
+
+              <label for="contactName">
+                Your name
+              </label>
+
+              <input
+                id="contactName"
+                name="name"
+                type="text"
+                maxlength="100"
+                autocomplete="name"
+                placeholder="Your name"
+                required
+              >
+
+            </div>
+
+
+            <div class="contact-field">
+
+              <label for="contactEmail">
+                Your email
+              </label>
+
+              <input
+                id="contactEmail"
+                name="email"
+                type="email"
+                maxlength="254"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              >
+
+            </div>
+
+
+            <div class="contact-field">
+
+              <label for="contactReason">
+                What are you reaching out about?
+              </label>
+
+              <select
+                id="contactReason"
+                name="reason"
+                required
+              >
+
+                <option value="">
+                  Choose one
+                </option>
+
+                <option value="Software / Automation">
+                  Software / Automation
+                </option>
+
+                <option value="AI Systems">
+                  AI Systems
+                </option>
+
+                <option value="Music / Creative">
+                  Music / Creative
+                </option>
+
+                <option value="Collaboration">
+                  Collaboration
+                </option>
+
+                <option value="Development Support">
+                  Development Support
+                </option>
+
+                <option value="Introduction / Networking">
+                  Introduction / Networking
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="contact-field">
+
+              <label for="contactMessage">
+                Message
+              </label>
+
+              <textarea
+                id="contactMessage"
+                name="message"
+                rows="7"
+                maxlength="3000"
+                placeholder="Tell me about the project, idea or opportunity..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div
+              id="contactError"
+              class="contact-error"
+              hidden
+            ></div>
+
+
+            <button
+              id="contactSubmit"
+              class="button primary contact-submit"
+              type="submit"
+            >
+              Send Message
+            </button>
+
+          </form>
+
+
+          <div
+            id="contactSuccess"
+            class="contact-success"
+            hidden
+          >
+
+            <div class="contact-success-mark">
+              &#10003;
+            </div>
+
+            <p class="eyebrow">
+              MESSAGE SENT
+            </p>
+
+            <h3>
+              Thanks for reaching out.
+            </h3>
+
+            <p>
+              Your message was sent successfully.
+              I'll reply as soon as I can.
+            </p>
+
+            <button
+              id="sendAnother"
+              class="button secondary"
+              type="button"
+            >
+              Send Another Message
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DEVELOPMENT -->
+
+    <section class="section section-alt">
+
+      <div class="container small-roadmap">
+
+        <div>
+
+          <p class="eyebrow">
+            DEVELOPMENT ROADMAP
+          </p>
+
+          <h2>
+            Want to support what I'm building next?
+          </h2>
+
+          <p>
+            The public roadmap explains what I already have,
+            what I'm building next and exactly what the
+            current development goal is for.
+          </p>
+
+        </div>
+
+
+        <a
+          class="button secondary"
+          href="https://manarazek-hue.github.io/development-dashboard/?view=presentation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          See the Development Plan ↗
+        </a>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <footer>
+
+    <div class="container footer-layout">
+
+      <div>
+
+        <strong>
+          MANA
+        </strong>
+
+        <p>
+          Music · Software · AI · Automation
+        </p>
+
+      </div>
+
+      <p>
+        © 2026 Mana
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js?v=3.1.0"></script>
+
+</body>
+
 </html>

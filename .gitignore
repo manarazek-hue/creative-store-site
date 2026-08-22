@@ -9,3 +9,7 @@ action_logs.zip
 .DS_Store
 Thumbs.db
 .vscode/
+
+*.before-final-hub
+
+*.phase1-before-facts
